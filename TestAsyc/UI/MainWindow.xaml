@@ -1,0 +1,54 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="1076.196">
+    <Grid Margin="0,0,-19.6,-0.2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="-5,0,0,274.8" Grid.RowSpan="2" HorizontalAlignment="Left" Width="1089" RenderTransformOrigin="0.491,0.484">
+            <StackPanel.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY ="2"></ScaleTransform>
+            </StackPanel.LayoutTransform>
+            <TextBox Text="{Binding SearchTerm}" Width="200" Margin="4"/>
+            <Button Content="Clear" Margin="4" FontSize="10px"/>
+            <Button Content="Sync" Margin="4" FontSize="10px"/>
+            <Button Content="Async" Margin="4" FontSize="10px"/>
+            <Button Content="Async Event" Margin="4" FontSize="10px"/>
+            <Button Content="Task Base Async" Margin="4" FontSize="10px"/>
+            <Button Content="Cancel" Margin="4" FontSize="10px"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="listBox" Grid.IsSharedSizeScope="true" ItemsSource="{Binding List}" 
+                 Grid.Column="0" IsSynchronizedWithCurrentItem="True"
+                 Background="Black">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="ItemTemplateGroup"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel HorizontalAlignment="Stretch" Orientation="Vertical"
+                                        Background="{StaticResource linearBackgroundBrush}">
+                                <TextBlock Text="{Binding Source}"/>
+                                <TextBlock Text="{Binding Title}"/>
+                                <Image HorizontalAlignment="Center" Width="100" Source="{Binding ThumbnaiUrl}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Center"/>
+            <Image Grid.Column="1" Source="{Binding List/Url}" Margin="0,0,27.8,0.2"/>
+        </Grid>
+    </Grid>
+</Window>
